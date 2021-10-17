@@ -1,0 +1,9 @@
+﻿  MyForm.cpp
+C:\Users\Usuario\source\repos\Proyecto_Cristian_Gonzalez_1183221\Proyecto_Cristian_Gonzalez_1183221\MyForm.h(441,21): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\Usuario\source\repos\Proyecto_Cristian_Gonzalez_1183221\Proyecto_Cristian_Gonzalez_1183221\MyForm.h(444,22): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\Usuario\source\repos\Proyecto_Cristian_Gonzalez_1183221\Proyecto_Cristian_Gonzalez_1183221\MyForm.h(774,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\Usuario\source\repos\Proyecto_Cristian_Gonzalez_1183221\Proyecto_Cristian_Gonzalez_1183221\MyForm.h(888,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+  Pila.cpp
+  Generando código...
+  Cola.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
+  Proyecto_Cristian_Gonzalez_1183221.vcxproj -> C:\Users\Usuario\source\repos\Proyecto_Cristian_Gonzalez_1183221\Debug\Proyecto_Cristian_Gonzalez_1183221.exe

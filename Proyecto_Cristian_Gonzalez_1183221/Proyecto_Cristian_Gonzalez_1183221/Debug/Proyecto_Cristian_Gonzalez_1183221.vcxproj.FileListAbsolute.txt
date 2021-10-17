@@ -1,0 +1,3 @@
+C:\Users\Usuario\source\repos\Proyecto_Cristian_Gonzalez_1183221\Proyecto_Cristian_Gonzalez_1183221\Debug\Proyecto_Cristian_Gonzalez_1183221.vcxprojAssemblyReference.cache
+C:\Users\Usuario\source\repos\Proyecto_Cristian_Gonzalez_1183221\Proyecto_Cristian_Gonzalez_1183221\Debug\ProyectoCristianGonzalez1183221.MyForm.resources
+C:\Users\Usuario\source\repos\Proyecto_Cristian_Gonzalez_1183221\Proyecto_Cristian_Gonzalez_1183221\Debug\Proyecto_Cristian_Gonzalez_1183221.vcxproj.GenerateResource.cache
