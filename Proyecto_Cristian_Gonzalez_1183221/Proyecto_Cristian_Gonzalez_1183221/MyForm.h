@@ -124,7 +124,7 @@ namespace ProyectoCristianGonzalez1183221 {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(34, 52);
+			this->label1->Location = System::Drawing::Point(37, 30);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(112, 17);
 			this->label1->TabIndex = 0;
@@ -162,7 +162,7 @@ namespace ProyectoCristianGonzalez1183221 {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(34, 439);
+			this->label4->Location = System::Drawing::Point(751, 409);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(51, 17);
 			this->label4->TabIndex = 7;
@@ -171,7 +171,7 @@ namespace ProyectoCristianGonzalez1183221 {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(92, 439);
+			this->label5->Location = System::Drawing::Point(852, 409);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(46, 17);
 			this->label5->TabIndex = 8;
@@ -271,7 +271,7 @@ namespace ProyectoCristianGonzalez1183221 {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(37, 76);
+			this->label9->Location = System::Drawing::Point(37, 50);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(46, 17);
 			this->label9->TabIndex = 20;
@@ -367,7 +367,7 @@ namespace ProyectoCristianGonzalez1183221 {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(979, 481);
+			this->ClientSize = System::Drawing::Size(975, 481);
 			this->Controls->Add(this->button9);
 			this->Controls->Add(this->button8);
 			this->Controls->Add(this->checkBox4);
@@ -400,23 +400,8 @@ namespace ProyectoCristianGonzalez1183221 {
 			this->PerformLayout();
 
 		}
+	
 
-	void csv_it()
-	{
-		ifstream infile("INGRESO.csv");
-		string line = "";
-		vector<string> datos_csv;
-
-		while (getline(infile, line))
-		{
-			stringstream strstr(line);
-			string word = "";
-			while (getline(strstr,word,','))
-			{
-				datos_csv.push_back(word);
-			}
-		}
-	}
 	
 #pragma endregion
 	Pila* Playlist = new Pila();
@@ -425,7 +410,7 @@ namespace ProyectoCristianGonzalez1183221 {
 	Cola* ListaReproduccion = new Cola();
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
-		ifstream infile("INGRESO.csv");
+		ifstream infile("archivo3.csv");
 		string line = "";
 		vector<string> datos_csv;
 
@@ -448,12 +433,12 @@ namespace ProyectoCristianGonzalez1183221 {
 					autor = true;
 				}
 			}
-			if (autor==true)
+			if (autor==true && datos_csv.at(i) != "")
 			{
 				Playlist->Insertar(datos_csv.at(i));
 				aux->Insertar(datos_csv.at(i));
 			}
-			else
+			else if(datos_csv.at(i) != "")
 			{
 				Playlist->Insertar(datos_csv.at(i) + "-ninguno");
 				aux->Insertar(datos_csv.at(i)+"-ninguno");
@@ -631,14 +616,36 @@ private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e
 	   void StackSort(Pila* st)
 	   {
 		   Pila* tmpst=new Pila();
-		   string e, e1;
+		   string e, e1, te, te1, ne, ne1,de,de1;
 		   while (st->PilaVacia()==false)
 		   {
 			   e = st->Quitar();
+			   te = e.substr(0, BuscarDivision(e)-1);
+			   ne = te.substr(BuscarDivision2(te) + 1, te.size());
+			   de = te.substr(0, BuscarDivision2(te));
 			   while (tmpst->PilaVacia()==false)
 			   {
 				   e1 = tmpst->Cima();
-				   if (e1 > e)
+				   te1 = e1.substr(0, BuscarDivision(e1)-1);
+				   ne1 = te1.substr(BuscarDivision2(te1) + 1, te1.size());
+				   de1 = te1.substr(0, BuscarDivision2(te1));
+				   if (de == de1)
+				   {
+					   int a;
+					   int b;
+					   a = atoi(ne1.c_str());
+					   b = atoi(ne.c_str());
+					   if (a > b)
+					   {
+						   e1 = tmpst->Quitar();
+						   st->Insertar(e1);
+					   }
+					   else
+					   {
+						   break;
+					   }
+				   }
+				   else if (e1 > e)
 				   {
 
 					   e1 = tmpst->Quitar();
@@ -663,14 +670,36 @@ private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e
 	   void Ascen(Pila* st)
 	   {
 		   Pila* tmpst = new Pila();
-		   string e, e1;
+		   string e, e1, te, te1, ne, ne1, de, de1;
 		   while (st->PilaVacia() == false)
 		   {
 			   e = st->Quitar();
+			   te = e.substr(0, BuscarDivision(e) - 1);
+			   ne = te.substr(BuscarDivision2(te) + 1, te.size());
+			   de = te.substr(0, BuscarDivision2(te));
 			   while (tmpst->PilaVacia() == false)
 			   {
 				   e1 = tmpst->Cima();
-				   if (e1 < e)
+				   te1 = e1.substr(0, BuscarDivision(e1) - 1);
+				   ne1 = te1.substr(BuscarDivision2(te1) + 1, te1.size());
+				   de1 = te1.substr(0, BuscarDivision2(te1));
+				   if (de == de1)
+				   {
+					   int a;
+					   int b;
+					   a = atoi(ne1.c_str());
+					   b = atoi(ne.c_str());
+					   if (a < b)
+					   {
+						   e1 = tmpst->Quitar();
+						   st->Insertar(e1);
+					   }
+					   else
+					   {
+						   break;
+					   }
+				   }
+				   else if (e1 < e)
 				   {
 
 					   e1 = tmpst->Quitar();
@@ -780,6 +809,20 @@ int BuscarDivision (string a)
 	}
 	return indice + 1;
 }
+
+int BuscarDivision2(string a)
+{
+	int indice;
+	for (int i = 0; i < a.size(); i++)
+	{
+		if (a[i] == ' ')
+		{
+			indice = i;
+		}
+	}
+	return indice;
+}
+
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	saveFileDialog1->Filter = "Text Documents | *.txt";
 	if (saveFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
@@ -811,18 +854,45 @@ private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e
 	   void DescebArts(Pila* st)
 	   {
 		   Pila* tmpst = new Pila();
-		   string e, e1,se,se1;
+		   string e, e1, se, se1, te, te1, ne, ne1;
 		   while (st->PilaVacia() == false)
 		   {
 			   e = st->Quitar();
 			   se = e.substr(BuscarDivision(e), e.size());
+			   te = se.substr(0, BuscarDivision2(se));
+			   ne = se.substr(BuscarDivision2(se) + 1, se.size());
+			   if (se == "ninguno")
+			   {
+				   se = "zzzzzzzz";
+			   }
 			   while (tmpst->PilaVacia() == false)
 			   {
 				   e1 = tmpst->Cima();
 				   se1 = e1.substr(BuscarDivision(e1), e1.size());
-				   if (se1 > se)
+				   te1 = se1.substr(0, BuscarDivision2(se1));
+				   ne1 = se1.substr(BuscarDivision2(se1) + 1, se.size());
+				   if (se1 == "ninguno")
 				   {
-
+					   se1 = "zzzzzzzz";
+				   }
+				   if (te == te1)
+				   {
+					   int a;
+					   int b;
+					   a = atoi(ne1.c_str());
+					   b = atoi(ne.c_str());
+					  if (a > b)
+					   {
+						   e1 = tmpst->Quitar();
+						   st->Insertar(e1);
+					   }
+					   else
+					   {
+						   break;
+					   }
+				   }
+				   else if (se1 > se)
+				   {
 					   e1 = tmpst->Quitar();
 					   st->Insertar(e1);
 				   }
@@ -845,11 +915,13 @@ private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e
 	   void AscenArts(Pila* st)
 	   {
 		   Pila* tmpst = new Pila();
-		   string e, e1, se, se1;
+		   string e, e1, se, se1,te,te1,ne,ne1;
 		   while (st->PilaVacia() == false)
 		   {
 			   e = st->Quitar();
 			   se = e.substr(BuscarDivision(e), e.size());
+			   te = se.substr(0, BuscarDivision2(se));
+			   ne = se.substr(BuscarDivision2(se) + 1, se.size());
 			   if (se == "ninguno")
 			   {
 				   se = "AAAAAAA";
@@ -858,13 +930,30 @@ private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e
 			   {
 				   e1 = tmpst->Cima();
 				   se1 = e1.substr(BuscarDivision(e1), e1.size());
+				   te1 = se1.substr(0, BuscarDivision2(se1));
+				   ne1 = se1.substr(BuscarDivision2(se1) + 1, se.size());
 				   if (se1 == "ninguno")
 				   {
 					   se1 = "AAAAAAA";
 				   } 
-				   if (se1 < se)
+				   if (te == te1)
 				   {
-
+					   int a;
+					   int b;
+					   a = atoi(ne1.c_str());
+					   b = atoi(ne.c_str());
+					   if (a < b)
+					   {
+						   e1 = tmpst->Quitar();
+						   st->Insertar(e1);
+					   }
+					   else
+					   {
+						   break;
+					   }
+				   }
+				   else if (se1 < se)
+				   {
 					   e1 = tmpst->Quitar();
 					   st->Insertar(e1);
 				   }
